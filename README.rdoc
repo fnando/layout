@@ -11,10 +11,10 @@ Layout is plugin that allow to choose the layout with options like
 
 Add the method call `set_layout` to your controller.
 
-	class PagesController < ApplicationController
-	  set_layout 'site', :only => %w(faq feedback)
-	  set_layout 'custom', :except => %w(faq feedback)
-	end
+  class PagesController < ApplicationController
+    set_layout 'site', :only => %w(faq feedback)
+    set_layout 'custom', :except => %w(faq feedback)
+  end
 
 == Maintainer
 
