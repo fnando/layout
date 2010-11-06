@@ -1,0 +1,6 @@
+ENV["RAILS_ENV"] = "test"
+require "rails"
+require "layout"
+require "support/config/boot"
+require "rspec/rails"
+require "support/custom_layout_shared"
