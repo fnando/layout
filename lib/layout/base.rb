@@ -20,27 +20,36 @@ module Layout
         #   set_layout :site, :except => %w[remove index]
         #
         def self.set_layout(name, options = {})
-          self.layout_options << [name, options]
+          self.layout_options << [name.to_s, options]
+          layout :choose_layout
         end
-
-        layout :choose_layout
       end
     end
 
     module InstanceMethods
       private
       def choose_layout
-        self.class.layout_options.each do |name, options|
-          name = name.to_s
+        layout_name = nil
 
-          if options[:only] && validates_action_for_layout(true, options[:only])
-            return name
-          elsif options[:except] && validates_action_for_layout(false, options[:except])
-            return name
-          end
+        self.class.layout_options.each do |name, options|
+          matched = options[:only] && validates_action_for_layout(true, options[:only]) ||
+                    options[:except] && validates_action_for_layout(false, options[:except])
+
+          next unless matched
+
+          layout_name = name
+          break
         end
 
-        nil
+        if layout_name && lookup_context.find_all(layout_name.to_s, "layouts").first
+          return layout_name
+        end
+
+        self.class.ancestors
+          .take_while {|item| item.name != "ActionController::Base" }
+          .select {|item| item.instance_of?(Class) }
+          .map(&:controller_name)
+          .find {|name| lookup_context.find_all(name, "layouts").first } || "application"
       end
 
       def validates_action_for_layout(compares_to, actions)

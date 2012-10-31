@@ -20,4 +20,10 @@ describe SamplesController do
     let(:action) { :edit }
     it_should_behave_like "custom layout"
   end
+
+  context "GET :remove" do
+    let(:layout) { "samples" }
+    let(:action) { :remove }
+    it_should_behave_like "custom layout"
+  end
 end
