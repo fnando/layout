@@ -15,15 +15,15 @@ module Layout
         # Set current action's layout.
         # Works in the same old fashion, but you can have multiple calls to it.
         #
-        #   set_layout "application"
-        #   set_layout "site", :only => %w[show edit]
-        #   set_layout "site", :except => %w[remove index]
+        #   set_layout :application
+        #   set_layout :site, :only => %w[show edit]
+        #   set_layout :site, :except => %w[remove index]
         #
         def self.set_layout(name, options = {})
           self.layout_options << [name, options]
         end
 
-        before_filter :choose_layout
+        layout :choose_layout
       end
     end
 
@@ -31,12 +31,16 @@ module Layout
       private
       def choose_layout
         self.class.layout_options.each do |name, options|
+          name = name.to_s
+
           if options[:only] && validates_action_for_layout(true, options[:only])
-            self.class.layout(name)
+            return name
           elsif options[:except] && validates_action_for_layout(false, options[:except])
-            self.class.layout(name)
+            return name
           end
         end
+
+        nil
       end
 
       def validates_action_for_layout(compares_to, actions)

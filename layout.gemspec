@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.email       = ["fnando.vieira@gmail.com"]
   s.homepage    = "http://rubygems.org/gems/layout"
   s.summary     = "Specify which layout will be rendered on Rails 3 apps"
-  s.description = "Specify which layout will be rendered on Rails 3 apps"
+  s.description = s.summary
 
   s.rubyforge_project = "layout"
 
@@ -19,7 +19,6 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  s.add_dependency "rails", ">= 3.0.0"
-  s.add_development_dependency "rspec-rails", "2.0.1"
-  s.add_development_dependency "ruby-debug19"
+  s.add_dependency "rails"
+  s.add_development_dependency "rspec-rails"
 end

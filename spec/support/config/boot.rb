@@ -1,19 +1,8 @@
-ENV["BUNDLE_GEMFILE"] = File.dirname(__FILE__) + "/../../../../Gemfile"
 require "bundler"
 Bundler.setup
 
 require "rails"
-
-%w(
-  action_controller
-  rails/test_unit
-).each do |framework|
-  begin
-    require "#{framework}/railtie"
-  rescue LoadError
-  end
-end
-
+require "action_controller/railtie"
 
 Bundler.require(:default)
 
