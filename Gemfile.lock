@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    layout (0.2.0)
+    layout (0.2.1)
       rails
 
 GEM
