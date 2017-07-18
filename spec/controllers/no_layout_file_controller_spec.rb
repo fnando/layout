@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe NoLayoutFileController do
+describe NoLayoutFileController, type: :controller do
   render_views
 
   context "GET :index" do

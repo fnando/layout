@@ -28,6 +28,7 @@ module Layout
 
     module InstanceMethods
       private
+
       def choose_layout
         layout_name = nil
 
@@ -53,7 +54,7 @@ module Layout
       end
 
       def validates_action_for_layout(compares_to, actions)
-        [actions].flatten.collect(&:to_sym).include?(action_name.to_sym) == compares_to
+        [actions].flatten.map(&:to_sym).include?(action_name.to_sym) == compares_to
       end
     end
   end

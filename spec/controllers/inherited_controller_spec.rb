@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe InheritedController do
+describe InheritedController, type: :controller do
   render_views
 
   context "GET :index" do

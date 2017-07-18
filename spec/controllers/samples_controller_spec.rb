@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe SamplesController do
+describe SamplesController, type: :controller do
   render_views
 
   context "GET :index" do
