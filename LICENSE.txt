@@ -1,27 +1,3 @@
-= Layout
-
-Layout is plugin that allow to choose the layout with options like
-`:except` and `:only`.
-
-== Instalation
-
-  gem install layout
-
-== Usage
-
-Add the method call `set_layout` to your controller.
-
-  class PagesController < ApplicationController
-    set_layout 'site', :only => %w(faq feedback)
-    set_layout 'custom', :except => %w(faq feedback)
-  end
-
-== Maintainer
-
-* Nando Vieira (http://nandovieira.com.br)
-
-== License
-
 (The MIT License)
 
 Permission is hereby granted, free of charge, to any person obtaining
