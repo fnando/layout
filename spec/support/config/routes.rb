@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Layout::Application.routes.draw do
   controller :samples do
     get :index
